@@ -1,0 +1,11 @@
+services:
+  app:
+    image: node:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/src
+    working_dir: /src
+    command: npm i && npm run dev
+    environment:
+      - NODE_ENV=development
