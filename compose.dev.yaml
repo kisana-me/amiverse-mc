@@ -8,4 +8,5 @@ services:
     working_dir: /src
     command: sh -c "npm install && npm update && npm run dev"
     environment:
-      - NODE_ENV=production
+      - WATCHPACK_POLLING=true
+      - NODE_ENV=development
