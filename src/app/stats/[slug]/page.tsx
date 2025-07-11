@@ -4,8 +4,10 @@ import {
   aggregateAllPlayersStatsFromDir,
   diffAllPlayersStatsFromDir,
   convertToCategoryRankings
- } from '@/libs/stats'
-import { uuid2name } from '@/utils/get_player'
+  
+  
+} from '../../../libs/stats'
+import { uuid2name } from '../../../utils/get_player'
 
 export async function generateStaticParams() {
   const dirPath = path.join(process.cwd(), 'data')
@@ -22,7 +24,8 @@ type Props = {
   params: { slug: string }
 }
 
-export default async function DataPage({ params }: Props) {
+// @ts-ignore
+export default async function DataPage({ params }) {
   const { slug } = params
 
   const dirPath = path.join(process.cwd(), 'data')
