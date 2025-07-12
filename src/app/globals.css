@@ -1,3 +1,17 @@
+:root {
+  --background-rgb: 255, 255, 255;
+  --foreground-rgb: 0, 0, 0;
+  --card-background-rgb: 240, 240, 240;
+  --border-rgb: 220, 220, 220;
+}
+
+[data-theme="dark"] {
+  --background-rgb: 20, 20, 20;
+  --foreground-rgb: 255, 255, 255;
+  --card-background-rgb: 30, 30, 30;
+  --border-rgb: 50, 50, 50;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -7,4 +21,7 @@ body {
   scroll-behavior: smooth;
   padding: 0;
   margin: 0;
+  background-color: rgb(var(--background-rgb));
+  color: rgb(var(--foreground-rgb));
+  transition: background-color 0.3s, color 0.3s;
 }

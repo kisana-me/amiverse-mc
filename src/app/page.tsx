@@ -1,19 +1,72 @@
 "use client"
 
-import { useEffect, useCallback } from 'react'
+import "./style.css"
+import { useState, useEffect, useCallback } from 'react'
+
+const images = [
+  '/images/1.png',
+  '/images/2.png',
+  '/images/3.png',
+  '/images/4.png'
+]
 
 export default function Home() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const goToPrevious = () => {
+    const isFirstImage = currentImageIndex === 0;
+    const newIndex = isFirstImage ? images.length - 1 : currentImageIndex - 1;
+    setCurrentImageIndex(newIndex);
+  };
+
+  const goToNext = useCallback(() => {
+    const isLastImage = currentImageIndex === images.length - 1;
+    const newIndex = isLastImage ? 0 : currentImageIndex + 1;
+    setCurrentImageIndex(newIndex);
+  }, [currentImageIndex]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNext();
+    }, 5000); // 5秒ごとに画像を切り替え
+
+    return () => clearInterval(interval);
+  }, [goToNext]);
 
   return (
     <>
-      <div className="container">
+      <div className="container home-page">
         <div className="background-animation"></div>
         <div>
           <section className="hero">
+            <div className="slideshow-container">
+              <div
+                className="slideshow-slider"
+                style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+              >
+                {images.map((src, index) => (
+                  <img key={index} src={src} alt={`Slide ${index + 1}`} className="slide-image" />
+                ))}
+              </div>
+            </div>
+            <div className="hero-overlay"></div>
             <div className="hero-content">
               <h1 className="main-title">新たな冒険が、ここから始まる。</h1>
               <p className="subtitle">探検、建築、そしてサバイバル。私たちと共に、最高のMinecraft体験を。</p>
               <a href="#join" className="cta-button">今すぐ参加</a>
+            </div>
+            <div className="dots-container">
+              <button className="arrow" onClick={goToPrevious}>&#10094;</button>
+              <div className="dots">
+                {images.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`dot ${currentImageIndex === index ? 'active' : ''}`}
+                    onClick={() => setCurrentImageIndex(index)}
+                  ></div>
+                ))}
+              </div>
+              <button className="arrow" onClick={goToNext}>&#10095;</button>
             </div>
           </section>
 
@@ -38,134 +91,6 @@ export default function Home() {
           </section>
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          position: relative;
-          width: 100%;
-        }
-        
-        .background-animation {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
-          background: linear-gradient(
-            -45deg,
-            #0e1427,
-            #1a2a6c,
-            #b21f1f,
-            #fdbb2d
-          );
-          background-size: 400% 400%;
-          animation: gradientBG 25s ease infinite;
-        }
-
-        @keyframes gradientBG {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-
-        .hero {
-          min-height: 80vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 4rem 2rem;
-        }
-        
-        .hero-content {
-          max-width: 900px;
-        }
-        
-        .main-title {
-          font-size: 4.5rem;
-          font-weight: 900;
-          margin-bottom: 1.5rem;
-          line-height: 1.2;
-          background: -webkit-linear-gradient(45deg, #a29bfe, #6c5ce7, #fd79a8);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        
-        .subtitle {
-          font-size: 1.5rem;
-          margin-bottom: 2.5rem;
-          color: #e0e0e0;
-        }
-        
-        .cta-button {
-          background: linear-gradient(45deg, #6c5ce7, #a29bfe);
-          color: white;
-          padding: 1rem 3rem;
-          border-radius: 50px;
-          text-decoration: none;
-          font-size: 1.2rem;
-          font-weight: bold;
-          transition: transform 0.3s, box-shadow 0.3s;
-          border: none;
-          box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
-        }
-        
-        .cta-button:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 0 30px rgba(108, 92, 231, 0.8);
-        }
-
-        .content-section {
-          padding: 6rem 2rem;
-          max-width: 1000px;
-          margin: 0 auto;
-          text-align: center;
-          background: var(--card-bg);
-          border-radius: 16px;
-          margin-bottom: 4rem;
-          border: 1px solid var(--card-border);
-          backdrop-filter: blur(5px);
-        }
-        
-        .section-title {
-          font-size: 3rem;
-          font-weight: 900;
-          margin-bottom: 2rem;
-          color: #fff;
-        }
-        
-        .section-text {
-          font-size: 1.1rem;
-          line-height: 1.8;
-          max-width: 800px;
-          margin: 0 auto 1.5rem auto;
-          color: #c0c0c0;
-        }
-        
-        .server-address-box {
-          background: rgba(0, 0, 0, 0.3);
-          border: 2px dashed var(--primary-glow);
-          padding: 2rem;
-          margin: 2rem auto;
-          display: inline-block;
-          border-radius: 8px;
-        }
-        
-        .server-address {
-          font-family: 'Courier New', Courier, monospace;
-          font-size: 2rem;
-          font-weight: bold;
-          color: #fff;
-          margin: 0;
-          text-shadow: 0 0 10px var(--primary-glow);
-        }
-      `}</style>
     </>
-  );
+  )
 }

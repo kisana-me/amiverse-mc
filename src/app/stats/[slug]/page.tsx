@@ -26,7 +26,7 @@ type Props = {
 
 // @ts-ignore
 export default async function DataPage({ params }) {
-  const { slug } = params
+  const { slug } = await params
 
   const dirPath = path.join(process.cwd(), 'data')
   const entries = fs.readdirSync(dirPath, { withFileTypes: true })

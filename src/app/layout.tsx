@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import LayoutWrapper from "./components/LayoutWrapper"
 import "./globals.css"
 import "./layout.css"
 
@@ -14,24 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body>
-        <header>
-          <nav>
-            <span className="server-name"><a href="/">AMS</a></span>
-            <ul>
-              <li><a href="/servers">サーバー</a></li>
-              <li><a href="/advancements">実績</a></li>
-              <li><a href="/stats">統計</a></li>
-            </ul>
-          </nav>
-        </header>
-        <main>
-          {children}
-        </main>
-        <footer>
-          <span>&copy; 2025 Amiverse Minecraft Server. All Rights Reserved.</span>
-        </footer>
-      </body>
+      <LayoutWrapper>{children}</LayoutWrapper>
     </html>
   )
 }
