@@ -99,7 +99,7 @@ main.no-padding {
   padding: 0;
 }
 
-main:has(.home-page) {
+main:has(.main-no-padding) {
   padding: 0;
 }
 

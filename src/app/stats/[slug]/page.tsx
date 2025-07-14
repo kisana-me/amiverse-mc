@@ -43,7 +43,7 @@ export default async function DataPage({ params }) {
   const rankings = convertToCategoryRankings(playersDiffStats)
 
   return (
-    <main className="">
+    <>
       <h1>データ: {slug}</h1>
 
       <h2>ランキング(前回集計から)</h2>
@@ -92,6 +92,6 @@ export default async function DataPage({ params }) {
           </details>
         ))}
       </div>
-    </main>
+    </>
   )
 }

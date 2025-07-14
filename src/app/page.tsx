@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import "./style.css"
 import { useState, useEffect, useCallback } from 'react'
 
@@ -35,7 +36,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="container home-page">
+      <div className="container main-no-padding">
         <div className="background-animation"></div>
         <div>
           <section className="hero">
@@ -83,7 +84,7 @@ export default function Home() {
             <h2 className="section-title">サーバーへの参加方法</h2>
             <p className="section-text">参加は簡単！Minecraftクライアントにサーバーアドレスを追加するだけです。</p>
             <div className="server-address-box">
-              <p className="server-address">Discordに参加してください</p>
+              <p className="server-address"><a href="https://discord.gg/sJpgMUSqHy">Discordに参加</a></p>
             </div>
             <p className="section-text">
               サーバーはJava EditionとBedrock Editionの最新バージョンから参加可能です。

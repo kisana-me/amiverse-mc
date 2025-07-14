@@ -11,9 +11,8 @@ export default async function StatsPage() {
     .map((entry) => entry.name)
 
   return (
-    <main className="">
+    <>
       <h1 className="">統計</h1>
-
       <ul className="">
         {slugs.map((slug) => (
           <li key={slug}>
@@ -23,6 +22,6 @@ export default async function StatsPage() {
           </li>
         ))}
       </ul>
-    </main>
+    </>
   )
 }

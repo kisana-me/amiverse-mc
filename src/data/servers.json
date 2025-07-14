@@ -1,0 +1,17 @@
+[
+  {
+    "server_id": "lobby",
+    "server_name": "ロビー",
+    "server_description": "特別なことがない限り、常に開いています。\n特にすることはなく、観光やアスレチックとしてお楽しみください。\nクリエイティブサーバーですごい建築したら、このロビーサーバーにもってきて飾ります。"
+  },
+  {
+    "server_id": "survival",
+    "server_name": "サバイバル",
+    "server_description": "サバイバル生活をお楽しみください。\n複数ワールドがあります。\n建築を他プレイヤーに邪魔されたくない場合は、スポーン地点から離れた場所で、土地の保護を有効にしてください。"
+  },
+  {
+    "server_id": "cit",
+    "server_name": "CIT",
+    "server_description": "CITの人のみ参加可能で、専用のDiscordサーバーと認証があります。"
+  }
+]

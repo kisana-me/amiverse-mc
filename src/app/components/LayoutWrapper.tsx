@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import Link from "next/link"
 
 export default function LayoutWrapper({
@@ -8,6 +9,7 @@ export default function LayoutWrapper({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [theme, setTheme] = useState("system")
 
@@ -26,6 +28,10 @@ export default function LayoutWrapper({
       localStorage.setItem("theme", theme)
     }
   }, [theme])
+
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -51,9 +57,9 @@ export default function LayoutWrapper({
       <div className={`mobile-menu ${isMenuOpen ? "open" : ""}`}>
         <nav>
           <ul>
-            <li><Link href="/servers" onClick={toggleMenu}>サーバー</Link></li>
-            <li><Link href="/advancements" onClick={toggleMenu}>実績</Link></li>
-            <li><Link href="/stats" onClick={toggleMenu}>統計</Link></li>
+            <li><Link href="/servers">サーバー</Link></li>
+            <li><Link href="/advancements">実績</Link></li>
+            <li><Link href="/stats">統計</Link></li>
           </ul>
         </nav>
         <div className="theme-switcher">
